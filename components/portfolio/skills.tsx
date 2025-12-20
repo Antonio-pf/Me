@@ -84,7 +84,7 @@ export function Skills() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {skillCategories.map((category) => (
-              <Card key={category.title} className="border-border/50">
+              <Card key={category.title} className="border-border/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:border-primary/50 hover:-translate-y-1">
                 <CardContent className="p-4 sm:p-6">
                   <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{category.title}</h3>
                   <div className="flex flex-wrap gap-2">
