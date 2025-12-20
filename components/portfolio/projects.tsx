@@ -64,15 +64,15 @@ export function Projects() {
     <section id="projects" className="py-20 lg:py-32">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto space-y-12">
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Projetos</h2>
+          <div className="space-y-4 px-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">Projetos</h2>
             <div className="w-20 h-1 bg-primary"></div>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base sm:text-lg text-muted-foreground">
               Alguns dos principais projetos que desenvolvi ao longo da minha carreira.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
             {projects.map((project) => (
               <Card
                 key={project.id}
@@ -95,23 +95,23 @@ export function Projects() {
                   ></div>
                 </div>
 
-                <CardContent className="p-6 space-y-4">
-                  <h3 className="text-2xl font-semibold group-hover:text-primary transition-colors">{project.title}</h3>
-                  <p className="text-muted-foreground text-base leading-relaxed">{project.description}</p>
+                <CardContent className="p-4 sm:p-6 space-y-4">
+                  <h3 className="text-xl sm:text-2xl font-semibold group-hover:text-primary transition-colors">{project.title}</h3>
+                  <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{project.description}</p>
 
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <span key={tech} className="px-3 py-1.5 bg-muted text-muted-foreground text-sm rounded-md font-medium">
+                      <span key={tech} className="px-2 sm:px-3 py-1 sm:py-1.5 bg-muted text-muted-foreground text-xs sm:text-sm rounded-md font-medium">
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex gap-3 pt-2">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="gap-2 bg-transparent cursor-pointer text-base"
+                      className="gap-2 bg-transparent cursor-pointer text-sm sm:text-base w-full sm:w-auto"
                       onClick={() => window.open(project.githubUrl, "_blank")}
                     >
                       <Github className="h-4 w-4" />
@@ -121,7 +121,7 @@ export function Projects() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="gap-2 bg-transparent cursor-pointer text-base"
+                        className="gap-2 bg-transparent cursor-pointer text-sm sm:text-base w-full sm:w-auto"
                         onClick={() => window.open(project.demoUrl, "_blank")}
                       >
                         <ExternalLink className="h-4 w-4" />

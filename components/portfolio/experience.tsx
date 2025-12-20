@@ -85,30 +85,30 @@ export function Experience() {
     <section id="experience" className="py-20 lg:py-32 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto space-y-12">
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Experiência Profissional</h2>
+          <div className="space-y-4 px-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">Experiência Profissional</h2>
             <div className="w-20 h-1 bg-primary"></div>
-            <p className="text-muted-foreground text-lg">Minha jornada profissional até agora</p>
+            <p className="text-muted-foreground text-base sm:text-lg">Minha jornada profissional até agora</p>
           </div>
 
-          <div className="grid lg:grid-cols-[300px_1fr] gap-6">
-            <div className="space-y-2">
+          <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-4 sm:gap-6">
+            <div className="space-y-2 px-2">
               {experiences.map((exp) => (
                 <button
                   key={exp.id}
                   onClick={() => setSelectedId(exp.id)}
-                  className={`w-full text-left p-4 rounded-lg border transition-all duration-200 cursor-pointer ${
+                  className={`w-full text-left p-3 sm:p-4 rounded-lg border transition-all duration-200 cursor-pointer ${
                     selectedId === exp.id
                       ? "bg-primary/10 border-primary shadow-sm"
                       : "bg-card border-border hover:border-primary/50"
                   }`}
                 >
                   <div className="space-y-1">
-                    <h3 className="font-semibold text-base">{exp.title}</h3>
-                    <p className="text-base text-muted-foreground">{exp.company}</p>
-                    <p className="text-sm text-muted-foreground">{exp.period}</p>
+                    <h3 className="font-semibold text-sm sm:text-base">{exp.title}</h3>
+                    <p className="text-sm sm:text-base text-muted-foreground">{exp.company}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{exp.period}</p>
                     {exp.current && (
-                      <Badge variant="secondary" className="text-sm mt-1">
+                      <Badge variant="secondary" className="text-xs sm:text-sm mt-1">
                         Atual
                       </Badge>
                     )}
@@ -117,7 +117,7 @@ export function Experience() {
               ))}
             </div>
 
-            <Card className="p-6 lg:p-8">
+            <Card className="p-4 sm:p-6 lg:p-8">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selectedId}
@@ -129,27 +129,27 @@ export function Experience() {
                 >
                   <div className="space-y-4">
                     <div>
-                      <h3 className="text-2xl font-bold">{selectedExperience.title}</h3>
-                      <p className="text-xl text-muted-foreground mt-1">{selectedExperience.company}</p>
+                      <h3 className="text-xl sm:text-2xl font-bold">{selectedExperience.title}</h3>
+                      <p className="text-lg sm:text-xl text-muted-foreground mt-1">{selectedExperience.company}</p>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 text-base">
-                      <div className="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-md">
+                    <div className="flex flex-wrap gap-2 sm:gap-4 text-sm sm:text-base">
+                      <div className="flex items-center gap-2 bg-primary/10 px-2 sm:px-3 py-1 sm:py-1.5 rounded-md">
                         <Calendar className="h-4 w-4 text-primary" />
-                        <span className="font-medium">{selectedExperience.period}</span>
+                        <span className="font-medium text-xs sm:text-sm">{selectedExperience.period}</span>
                       </div>
-                      <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
-                        <MapPin className="h-4 w-4 text-muted-foreground" />
-                        <span>{selectedExperience.location}</span>
+                      <div className="flex items-center gap-2 bg-muted px-2 sm:px-3 py-1 sm:py-1.5 rounded-md">
+                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
+                        <span className="text-xs sm:text-sm">{selectedExperience.location}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-4">
-                    <h4 className="font-semibold text-xl">Detalhes:</h4>
+                    <h4 className="font-semibold text-lg sm:text-xl">Detalhes:</h4>
                     <ul className="space-y-3">
                       {selectedExperience.description.map((item, index) => (
-                        <li key={index} className="flex gap-3 text-muted-foreground text-base leading-relaxed">
+                        <li key={index} className="flex gap-2 sm:gap-3 text-muted-foreground text-sm sm:text-base leading-relaxed">
                           <span className="text-primary mt-1">•</span>
                           <span>{item}</span>
                         </li>
@@ -157,14 +157,14 @@ export function Experience() {
                     </ul>
                   </div>
 
-                  <div className="space-y-4 pt-6 border-t">
-                    <h4 className="font-semibold text-xl">Tecnologias:</h4>
+                  <div className="space-y-4 pt-4 sm:pt-6 border-t">
+                    <h4 className="font-semibold text-lg sm:text-xl">Tecnologias:</h4>
                     <div className="flex flex-wrap gap-2">
                       {selectedExperience.technologies.map((tech, index) => {
                         const Icon = tech.icon
                         return (
-                          <Badge key={index} variant="secondary" className={`${tech.color} text-base px-3 py-1.5 border-current/20`}>
-                            <Icon className="mr-2 h-4 w-4" />
+                          <Badge key={index} variant="secondary" className={`${tech.color} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-1.5 border-current/20`}>
+                            <Icon className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                             {tech.name}
                           </Badge>
                         )

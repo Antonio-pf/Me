@@ -61,8 +61,8 @@ export function Header() {
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <div className="flex items-center gap-3">
-            <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-primary shadow-sm transition-transform duration-300 hover:scale-110">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="relative h-8 w-8 sm:h-10 sm:w-10 overflow-hidden rounded-full border-2 border-primary shadow-sm transition-transform duration-300 hover:scale-110 flex-shrink-0">
               <Image
                 src={imageError ? fallbackAvatarUrl : githubAvatarUrl}
                 alt="Antônio Pires Felipe"
@@ -72,24 +72,24 @@ export function Header() {
                 onError={() => setImageError(true)}
               />
             </div>
-            <div>
-              <a href="#" className="text-xl font-bold hover:opacity-80 transition-opacity">
+            <div className="min-w-0">
+              <a href="#" className="text-base sm:text-lg md:text-xl font-bold hover:opacity-80 transition-opacity truncate block">
                 Antônio P. Felipe
               </a>
               <div className="flex items-center">
-                <Badge variant="outline" className="text-sm bg-primary/10 text-primary border-primary/20 mt-1 font-medium">
+                <Badge variant="outline" className="text-xs sm:text-sm bg-primary/10 text-primary border-primary/20 mt-0.5 sm:mt-1 font-medium">
                   Software Developer
                 </Badge>
               </div>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-8">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                className="text-sm lg:text-base font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer whitespace-nowrap"
               >
                 {item.label}
               </button>
@@ -114,13 +114,13 @@ export function Header() {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden bg-background border-t border-border">
-          <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-background border-t border-border shadow-lg">
+          <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-left text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+                className="text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors py-3 px-3 rounded-md cursor-pointer"
               >
                 {item.label}
               </button>

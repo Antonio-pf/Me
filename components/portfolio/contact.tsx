@@ -55,10 +55,10 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {contactInfo.map((item) => (
               <Card key={item.label} className="border-border/50">
-                <CardContent className="p-6 text-center space-y-3">
+                <CardContent className="p-4 md:p-6 text-center space-y-3">
                   <div className="inline-flex p-3 bg-primary/10 rounded-lg">
                     <item.icon className="h-6 w-6 text-primary" />
                   </div>
@@ -69,12 +69,12 @@ export function Contact() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-base font-medium hover:text-primary transition-colors"
+                        className="text-sm md:text-base font-medium hover:text-primary transition-colors break-words"
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-base font-medium">{item.value}</p>
+                      <p className="text-sm md:text-base font-medium break-words">{item.value}</p>
                     )}
                   </div>
                 </CardContent>
@@ -82,17 +82,17 @@ export function Contact() {
             ))}
           </div>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             {socialLinks.map((link) => (
               <Button
                 key={link.label}
                 variant="outline"
                 size="lg"
-                className="gap-2 bg-transparent text-base"
+                className="gap-2 bg-transparent text-base w-full sm:w-auto"
                 onClick={() => window.open(link.href, "_blank")}
               >
                 <link.icon className="h-5 w-5" />
-                <span>{link.label}</span>
+                <span className="truncate">{link.label}</span>
               </Button>
             ))}
           </div>
