@@ -35,12 +35,12 @@ export function Skills() {
             {skillCategories.map((category) => (
               <Card key={category.title} className="border-border/50">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4">{category.title}</h3>
+                  <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-lg hover:bg-primary/20 transition-colors"
+                        className="px-3 py-1.5 bg-primary/10 text-primary text-base font-medium rounded-lg hover:bg-primary/20 transition-colors"
                       >
                         {skill}
                       </span>

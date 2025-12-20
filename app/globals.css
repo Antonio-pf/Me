@@ -16,7 +16,7 @@
   --secondary: oklch(0.96 0.01 165);
   --secondary-foreground: oklch(0.15 0.01 180);
   --muted: oklch(0.97 0.005 165);
-  --muted-foreground: oklch(0.5 0.01 180);
+  --muted-foreground: oklch(0.45 0.01 180);
   --accent: oklch(0.96 0.01 165);
   --accent-foreground: oklch(0.15 0.01 180);
   --destructive: oklch(0.577 0.245 27.325);
@@ -53,7 +53,7 @@
   --secondary: oklch(0.22 0.02 180);
   --secondary-foreground: oklch(0.97 0.005 165);
   --muted: oklch(0.22 0.02 180);
-  --muted-foreground: oklch(0.65 0.01 165);
+  --muted-foreground: oklch(0.72 0.01 165);
   --accent: oklch(0.27 0.02 180);
   --accent-foreground: oklch(0.97 0.005 165);
   --destructive: oklch(0.5 0.2 25);
@@ -123,9 +123,29 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 16px;
+    line-height: 1.6;
   }
   /* Added smooth scroll behavior */
   html {
     scroll-behavior: smooth;
+    font-size: 100%;
+  }
+  
+  /* Improved font sizes for better readability */
+  @media (max-width: 640px) {
+    body {
+      font-size: 15px;
+    }
+  }
+  
+  /* Minimum font sizes for mobile */
+  p, li, span {
+    min-width: 0;
+  }
+  
+  /* Ensure text remains readable */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
   }
 }

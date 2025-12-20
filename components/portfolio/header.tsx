@@ -73,11 +73,11 @@ export function Header() {
               />
             </div>
             <div>
-              <a href="#" className="text-lg font-bold hover:opacity-80 transition-opacity">
+              <a href="#" className="text-xl font-bold hover:opacity-80 transition-opacity">
                 Antônio P. Felipe
               </a>
               <div className="flex items-center">
-                <Badge variant="outline" className="text-xs bg-primary/10 text-primary border-primary/20 mt-1">
+                <Badge variant="outline" className="text-sm bg-primary/10 text-primary border-primary/20 mt-1 font-medium">
                   Software Developer
                 </Badge>
               </div>
@@ -89,7 +89,7 @@ export function Header() {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
               >
                 {item.label}
               </button>
@@ -120,7 +120,7 @@ export function Header() {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-left text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
+                className="text-left text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2 cursor-pointer"
               >
                 {item.label}
               </button>

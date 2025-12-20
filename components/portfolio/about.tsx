@@ -13,7 +13,7 @@ export function About() {
             <div className="w-20 h-1 bg-primary"></div>
           </div>
 
-          <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+          <div className="space-y-6 text-xl text-muted-foreground leading-relaxed">
             <p>
               Sou <strong className="text-foreground">Desenvolvedor Full Stack</strong>, com foco atual em{" "}
               <strong className="text-foreground">.NET</strong> e experiência com{" "}
@@ -39,14 +39,14 @@ export function About() {
                   <div className="p-2 bg-primary/10 rounded-lg">
                     <GraduationCap className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Formação</h3>
+                  <h3 className="text-2xl font-semibold">Formação</h3>
                 </div>
                 <div>
-                  <h4 className="font-medium">Análise e Desenvolvimento de Sistemas</h4>
-                  <p className="text-sm text-muted-foreground mt-1">FATEC - Cursando (5º semestre)</p>
+                  <h4 className="font-medium text-lg">Análise e Desenvolvimento de Sistemas</h4>
+                  <p className="text-base text-muted-foreground mt-1">FATEC - Cursando (5º semestre)</p>
                   <div className="mt-4 space-y-2">
-                    <p className="text-sm font-medium">Certificações:</p>
-                    <ul className="text-sm text-muted-foreground space-y-1">
+                    <p className="text-base font-medium">Certificações:</p>
+                    <ul className="text-base text-muted-foreground space-y-1">
                       <li>• AWS Partner: Technical Accredited</li>
                       <li>• Programming with SQL - Oracle</li>
                       <li>• Formação Laravel - Alura</li>

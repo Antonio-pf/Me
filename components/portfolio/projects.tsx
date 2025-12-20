@@ -96,12 +96,12 @@ export function Projects() {
                 </div>
 
                 <CardContent className="p-6 space-y-4">
-                  <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
+                  <h3 className="text-2xl font-semibold group-hover:text-primary transition-colors">{project.title}</h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">{project.description}</p>
 
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <span key={tech} className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md">
+                      <span key={tech} className="px-3 py-1.5 bg-muted text-muted-foreground text-sm rounded-md font-medium">
                         {tech}
                       </span>
                     ))}
@@ -111,7 +111,7 @@ export function Projects() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="gap-2 bg-transparent cursor-pointer"
+                      className="gap-2 bg-transparent cursor-pointer text-base"
                       onClick={() => window.open(project.githubUrl, "_blank")}
                     >
                       <Github className="h-4 w-4" />
@@ -121,7 +121,7 @@ export function Projects() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="gap-2 bg-transparent cursor-pointer"
+                        className="gap-2 bg-transparent cursor-pointer text-base"
                         onClick={() => window.open(project.demoUrl, "_blank")}
                       >
                         <ExternalLink className="h-4 w-4" />

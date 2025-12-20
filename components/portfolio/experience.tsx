@@ -5,6 +5,17 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, MapPin } from "lucide-react"
+import { 
+  SiDotnet, 
+  SiGithubactions, 
+  SiLaravel, 
+  SiPhp, 
+  SiJquery, 
+  SiPostgresql, 
+  SiBootstrap 
+} from "react-icons/si"
+import { TbTestPipe, TbBrandCSharp } from "react-icons/tb"
+import { FaLeaf } from "react-icons/fa"
 
 interface Experience {
   id: string
@@ -16,7 +27,7 @@ interface Experience {
   description: string[]
   technologies: {
     name: string
-    icon: string
+    icon: React.ComponentType<{ className?: string }>
     color: string
   }[]
 }
@@ -36,11 +47,11 @@ const experiences: Experience[] = [
       "Integração dos testes em pipelines de CI no GitHub Actions para validação contínua",
     ],
     technologies: [
-      { name: ".NET", icon: "🟣", color: "bg-purple-500/10 text-purple-500" },
-      { name: "C#", icon: "🟪", color: "bg-purple-600/10 text-purple-600" },
-      { name: "BDD", icon: "🧪", color: "bg-green-500/10 text-green-500" },
-      { name: "GitHub Actions", icon: "⚙️", color: "bg-gray-500/10 text-gray-500" },
-      { name: "Reqnroll", icon: "🥒", color: "bg-emerald-500/10 text-emerald-500" },
+      { name: ".NET", icon: SiDotnet, color: "bg-purple-500/20 text-purple-400 dark:bg-purple-500/30 dark:text-purple-300" },
+      { name: "C#", icon: TbBrandCSharp, color: "bg-purple-600/20 text-purple-500 dark:bg-purple-600/30 dark:text-purple-400" },
+      { name: "BDD", icon: TbTestPipe, color: "bg-green-500/20 text-green-600 dark:bg-green-500/30 dark:text-green-400" },
+      { name: "GitHub Actions", icon: SiGithubactions, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+      { name: "Reqnroll", icon: FaLeaf, color: "bg-emerald-500/20 text-emerald-600 dark:bg-emerald-500/30 dark:text-emerald-400" },
     ],
   },
   {
@@ -57,11 +68,11 @@ const experiences: Experience[] = [
       "Ajustes no front-end para melhor experiência do usuário",
     ],
     technologies: [
-      { name: "Laravel", icon: "🔴", color: "bg-red-500/10 text-red-500" },
-      { name: "PHP", icon: "🐘", color: "bg-indigo-500/10 text-indigo-500" },
-      { name: "jQuery", icon: "💙", color: "bg-blue-500/10 text-blue-500" },
-      { name: "PostgreSQL", icon: "🐘", color: "bg-blue-600/10 text-blue-600" },
-      { name: "Bootstrap", icon: "🅱️", color: "bg-purple-500/10 text-purple-500" },
+      { name: "Laravel", icon: SiLaravel, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },
+      { name: "PHP", icon: SiPhp, color: "bg-indigo-500/20 text-indigo-600 dark:bg-indigo-500/30 dark:text-indigo-400" },
+      { name: "jQuery", icon: SiJquery, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+      { name: "PostgreSQL", icon: SiPostgresql, color: "bg-blue-600/20 text-blue-700 dark:bg-blue-600/30 dark:text-blue-400" },
+      { name: "Bootstrap", icon: SiBootstrap, color: "bg-purple-500/20 text-purple-600 dark:bg-purple-500/30 dark:text-purple-400" },
     ],
   },
 ]
@@ -93,11 +104,11 @@ export function Experience() {
                   }`}
                 >
                   <div className="space-y-1">
-                    <h3 className="font-semibold text-sm">{exp.title}</h3>
-                    <p className="text-sm text-muted-foreground">{exp.company}</p>
-                    <p className="text-xs text-muted-foreground">{exp.period}</p>
+                    <h3 className="font-semibold text-base">{exp.title}</h3>
+                    <p className="text-base text-muted-foreground">{exp.company}</p>
+                    <p className="text-sm text-muted-foreground">{exp.period}</p>
                     {exp.current && (
-                      <Badge variant="secondary" className="text-xs mt-1">
+                      <Badge variant="secondary" className="text-sm mt-1">
                         Atual
                       </Badge>
                     )}
@@ -122,7 +133,7 @@ export function Experience() {
                       <p className="text-xl text-muted-foreground mt-1">{selectedExperience.company}</p>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 text-sm">
+                    <div className="flex flex-wrap gap-4 text-base">
                       <div className="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-md">
                         <Calendar className="h-4 w-4 text-primary" />
                         <span className="font-medium">{selectedExperience.period}</span>
@@ -135,10 +146,10 @@ export function Experience() {
                   </div>
 
                   <div className="space-y-4">
-                    <h4 className="font-semibold text-lg">Detalhes:</h4>
+                    <h4 className="font-semibold text-xl">Detalhes:</h4>
                     <ul className="space-y-3">
                       {selectedExperience.description.map((item, index) => (
-                        <li key={index} className="flex gap-3 text-muted-foreground">
+                        <li key={index} className="flex gap-3 text-muted-foreground text-base leading-relaxed">
                           <span className="text-primary mt-1">•</span>
                           <span>{item}</span>
                         </li>
@@ -147,14 +158,17 @@ export function Experience() {
                   </div>
 
                   <div className="space-y-4 pt-6 border-t">
-                    <h4 className="font-semibold text-lg">Tecnologias:</h4>
+                    <h4 className="font-semibold text-xl">Tecnologias:</h4>
                     <div className="flex flex-wrap gap-2">
-                      {selectedExperience.technologies.map((tech, index) => (
-                        <Badge key={index} variant="secondary" className={`${tech.color} text-sm px-3 py-1`}>
-                          <span className="mr-2">{tech.icon}</span>
-                          {tech.name}
-                        </Badge>
-                      ))}
+                      {selectedExperience.technologies.map((tech, index) => {
+                        const Icon = tech.icon
+                        return (
+                          <Badge key={index} variant="secondary" className={`${tech.color} text-base px-3 py-1.5 border-current/20`}>
+                            <Icon className="mr-2 h-4 w-4" />
+                            {tech.name}
+                          </Badge>
+                        )
+                      })}
                     </div>
                   </div>
                 </motion.div>

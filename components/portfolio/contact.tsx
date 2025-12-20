@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react"
+import { Mail, Phone, MapPin, Linkedin, Github, Download } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
@@ -27,6 +27,11 @@ export function Contact() {
 
   const socialLinks = [
     {
+      icon: Download,
+      label: "Baixar Currículo",
+      href: "/curriculo.pdf",
+    },
+    {
       icon: Linkedin,
       label: "LinkedIn",
       href: "https://linkedin.com/in/antônio-pires-felipe-9844ab160",
@@ -45,7 +50,7 @@ export function Contact() {
           <div className="space-y-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Vamos conversar?</h2>
             <div className="w-20 h-1 bg-primary mx-auto"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Estou sempre aberto a novas oportunidades e projetos interessantes. Entre em contato!
             </p>
           </div>
@@ -58,18 +63,18 @@ export function Contact() {
                     <item.icon className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-muted-foreground mb-1">{item.label}</p>
+                    <p className="text-base font-medium text-muted-foreground mb-1">{item.label}</p>
                     {item.href ? (
                       <a
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-medium hover:text-primary transition-colors"
+                        className="text-base font-medium hover:text-primary transition-colors"
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <p className="text-sm font-medium">{item.value}</p>
+                      <p className="text-base font-medium">{item.value}</p>
                     )}
                   </div>
                 </CardContent>
@@ -83,7 +88,7 @@ export function Contact() {
                 key={link.label}
                 variant="outline"
                 size="lg"
-                className="gap-2 bg-transparent"
+                className="gap-2 bg-transparent text-base"
                 onClick={() => window.open(link.href, "_blank")}
               >
                 <link.icon className="h-5 w-5" />

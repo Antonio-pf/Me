@@ -143,5 +143,33 @@ button, a, [role="button"], .clickable, .nav-item, input[type="submit"], input[t
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Improved readability for smaller text */
+  .text-xs {
+    font-size: 0.8125rem; /* 13px instead of 12px */
+    line-height: 1.5;
+  }
+  
+  .text-sm {
+    font-size: 0.9375rem; /* 15px instead of 14px */
+    line-height: 1.6;
+  }
+  
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    body {
+      font-size: 17px;
+    }
+    
+    .text-xs {
+      font-size: 0.875rem; /* 14px on mobile */
+    }
+    
+    .text-sm {
+      font-size: 1rem; /* 16px on mobile */
+    }
   }
 }
