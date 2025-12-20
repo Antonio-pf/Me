@@ -1,24 +1,74 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { 
+  SiPhp, 
+  SiLaravel, 
+  SiDotnet, 
+  SiSpring, 
+  SiMysql,
+  SiJavascript, 
+  SiJquery, 
+  SiBootstrap, 
+  SiHtml5, 
+  SiCss3,
+  SiGit, 
+  SiDocker, 
+  SiGithubactions, 
+  SiAmazon
+} from "react-icons/si"
+import { TbBrandCSharp, TbTestPipe } from "react-icons/tb"
+import { FaCode } from "react-icons/fa"
+import { MdCleaningServices } from "react-icons/md"
+
+interface Skill {
+  name: string
+  icon: React.ComponentType<{ className?: string }>
+  color: string
+}
 
 export function Skills() {
-  const skillCategories = [
+  const skillCategories: { title: string; skills: Skill[] }[] = [
     {
       title: "Backend",
-      skills: ["PHP", "Laravel", "C#", ".NET", "Spring Boot", "SQL"],
+      skills: [
+        { name: "PHP", icon: SiPhp, color: "bg-indigo-500/20 text-indigo-600 dark:bg-indigo-500/30 dark:text-indigo-400" },
+        { name: "Laravel", icon: SiLaravel, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },
+        { name: "C#", icon: TbBrandCSharp, color: "bg-purple-600/20 text-purple-500 dark:bg-purple-600/30 dark:text-purple-400" },
+        { name: ".NET", icon: SiDotnet, color: "bg-purple-500/20 text-purple-400 dark:bg-purple-500/30 dark:text-purple-300" },
+        { name: "Spring Boot", icon: SiSpring, color: "bg-green-600/20 text-green-700 dark:bg-green-600/30 dark:text-green-400" },
+        { name: "SQL", icon: SiMysql, color: "bg-blue-600/20 text-blue-700 dark:bg-blue-600/30 dark:text-blue-400" },
+      ],
     },
     {
       title: "Frontend",
-      skills: ["JavaScript", "jQuery", "Bootstrap", "HTML", "CSS"],
+      skills: [
+        { name: "JavaScript", icon: SiJavascript, color: "bg-yellow-500/20 text-yellow-600 dark:bg-yellow-500/30 dark:text-yellow-400" },
+        { name: "jQuery", icon: SiJquery, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+        { name: "Bootstrap", icon: SiBootstrap, color: "bg-purple-500/20 text-purple-600 dark:bg-purple-500/30 dark:text-purple-400" },
+        { name: "HTML", icon: SiHtml5, color: "bg-orange-500/20 text-orange-600 dark:bg-orange-500/30 dark:text-orange-400" },
+        { name: "CSS", icon: SiCss3, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+      ],
     },
     {
       title: "DevOps & Tools",
-      skills: ["Git", "Docker", "GitHub Actions", "AWS"],
+      skills: [
+        { name: "Git", icon: SiGit, color: "bg-orange-600/20 text-orange-700 dark:bg-orange-600/30 dark:text-orange-400" },
+        { name: "Docker", icon: SiDocker, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+        { name: "GitHub Actions", icon: SiGithubactions, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+        { name: "AWS", icon: SiAmazon, color: "bg-orange-500/20 text-orange-600 dark:bg-orange-500/30 dark:text-orange-400" },
+      ],
     },
     {
       title: "Práticas",
-      skills: ["TDD", "BDD", "Clean Code", "CI/CD", "Agile"],
+      skills: [
+        { name: "TDD", icon: TbTestPipe, color: "bg-green-500/20 text-green-600 dark:bg-green-500/30 dark:text-green-400" },
+        { name: "BDD", icon: TbTestPipe, color: "bg-green-500/20 text-green-600 dark:bg-green-500/30 dark:text-green-400" },
+        { name: "Clean Code", icon: MdCleaningServices, color: "bg-teal-500/20 text-teal-600 dark:bg-teal-500/30 dark:text-teal-400" },
+        { name: "CI/CD", icon: SiGithubactions, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+        { name: "Agile", icon: FaCode, color: "bg-gray-500/20 text-gray-600 dark:bg-gray-500/30 dark:text-gray-400" },
+      ],
     },
   ]
 
@@ -37,14 +87,19 @@ export function Skills() {
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
                   <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1.5 bg-primary/10 text-primary text-base font-medium rounded-lg hover:bg-primary/20 transition-colors"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                    {category.skills.map((skill) => {
+                      const Icon = skill.icon
+                      return (
+                        <Badge 
+                          key={skill.name} 
+                          variant="secondary" 
+                          className={`${skill.color} text-base px-3 py-1.5 border-current/20`}
+                        >
+                          <Icon className="mr-2 h-4 w-4" />
+                          {skill.name}
+                        </Badge>
+                      )
+                    })}
                   </div>
                 </CardContent>
               </Card>

@@ -1,7 +1,6 @@
 "use client"
 
-import { ArrowDown, Download } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ArrowDown } from "lucide-react"
 import { Inter, Newsreader } from 'next/font/google'
 
 const inter = Inter({
@@ -37,24 +36,13 @@ export function Hero() {
             desenvolvimento.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-            <Button
-              size="lg"
-              onClick={() => window.open('/curriculo.pdf', '_blank')}
-              className="gap-2 text-base font-medium"
-            >
-              <Download className="h-5 w-5" />
-              <span>Baixar Currículo</span>
-            </Button>
-
-            <button
-              onClick={scrollToAbout}
-              className="inline-flex items-center gap-2 text-base md:text-lg text-muted-foreground hover:text-foreground transition-colors animate-bounce cursor-pointer font-medium"
-            >
-              <span>Explorar</span>
-              <ArrowDown className="h-4 w-4" />
-            </button>
-          </div>
+          <button
+            onClick={scrollToAbout}
+            className="inline-flex items-center gap-2 text-base md:text-lg text-muted-foreground hover:text-foreground transition-colors animate-bounce mt-8 cursor-pointer font-medium"
+          >
+            <span>Explorar</span>
+            <ArrowDown className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </section>
