@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { motion } from "framer-motion"
 import { ExternalLink, Github } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -61,19 +62,39 @@ export function Projects() {
   ]
 
   return (
-    <section id="projects" className="py-20 lg:py-32">
+    <motion.section 
+      id="projects" 
+      className="py-20 lg:py-32"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-6xl mx-auto space-y-12">
-          <div className="space-y-4 px-2">
+          <motion.div 
+            className="space-y-4 px-2"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">Projetos</h2>
             <div className="w-20 h-1 bg-primary"></div>
             <p className="text-base sm:text-lg text-muted-foreground">
               Alguns dos principais projetos que desenvolvi ao longo da minha carreira.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
-            {projects.map((project) => (
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+              >
               <Card
                 key={project.id}
                 className="group overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-500"
@@ -131,10 +152,11 @@ export function Projects() {
                   </div>
                 </CardContent>
               </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

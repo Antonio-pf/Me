@@ -1,19 +1,39 @@
 "use client"
 
+import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { GraduationCap } from "lucide-react"
 
 export function About() {
   return (
-    <section id="about" className="py-20 lg:py-32">
+    <motion.section 
+      id="about" 
+      className="py-20 lg:py-32"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-4xl mx-auto space-y-12">
-          <div className="space-y-4">
+          <motion.div 
+            className="space-y-4"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Sobre mim</h2>
             <div className="w-20 h-1 bg-primary"></div>
-          </div>
+          </motion.div>
 
-          <div className="space-y-6 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed px-2">
+          <motion.div 
+            className="space-y-6 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed px-2"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <p>
               Sou <strong className="text-foreground">Desenvolvedor Full Stack</strong>, com foco atual em{" "}
               <strong className="text-foreground">.NET</strong> e experiência com{" "}
@@ -30,9 +50,15 @@ export function About() {
               usuário. Estou sempre aberto a novos desafios e valorizo a oportunidade de impulsionar o sucesso da
               equipe.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-1 gap-6 mt-12 max-w-md mx-auto px-2">
+          <motion.div 
+            className="grid md:grid-cols-1 gap-6 mt-12 max-w-md mx-auto px-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <Card>
               <CardContent className="p-4 sm:p-6 space-y-4">
                 <div className="flex items-center gap-3">
@@ -55,9 +81,9 @@ export function About() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }

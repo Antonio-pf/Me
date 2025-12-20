@@ -1,5 +1,6 @@
 "use client"
 
+import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { 
@@ -73,18 +74,38 @@ export function Skills() {
   ]
 
   return (
-    <section id="skills" className="py-20 lg:py-32 bg-muted/30">
+    <motion.section 
+      id="skills" 
+      className="py-20 lg:py-32 bg-muted/30"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-4xl mx-auto space-y-12">
-          <div className="space-y-4 px-2">
+          <motion.div 
+            className="space-y-4 px-2"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">Habilidades</h2>
             <div className="w-20 h-1 bg-primary"></div>
             <p className="text-base sm:text-lg text-muted-foreground">Tecnologias e ferramentas com as quais trabalho</p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            {skillCategories.map((category) => (
-              <Card key={category.title} className="border-border/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:border-primary/50 hover:-translate-y-1">
+            {skillCategories.map((category, index) => (
+              <motion.div
+                key={category.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+              >
+                <Card className="border-border/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:border-primary/50 hover:-translate-y-1 h-full">
                 <CardContent className="p-4 sm:p-6">
                   <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{category.title}</h3>
                   <div className="flex flex-wrap gap-2">
@@ -104,10 +125,11 @@ export function Skills() {
                   </div>
                 </CardContent>
               </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
