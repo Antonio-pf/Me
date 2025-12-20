@@ -82,20 +82,6 @@ export function Contact() {
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-            {socialLinks.map((link) => (
-              <Button
-                key={link.label}
-                variant="outline"
-                size="lg"
-                className="gap-2 bg-transparent text-base w-full sm:w-auto"
-                onClick={() => window.open(link.href, "_blank")}
-              >
-                <link.icon className="h-5 w-5" />
-                <span className="truncate">{link.label}</span>
-              </Button>
-            ))}
-          </div>
         </div>
       </div>
     </section>

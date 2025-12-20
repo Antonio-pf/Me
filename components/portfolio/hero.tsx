@@ -1,6 +1,7 @@
 "use client"
 
-import { ArrowDown } from "lucide-react"
+import { ArrowDown, Linkedin, Github, Download } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { Inter, Newsreader } from 'next/font/google'
 
 const inter = Inter({
@@ -20,6 +21,24 @@ export function Hero() {
     document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })
   }
 
+  const socialLinks = [
+    {
+      icon: Download,
+      label: "Baixar Currículo",
+      href: "/curriculo.pdf",
+    },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      href: "https://linkedin.com/in/antônio-pires-felipe-9844ab160",
+    },
+    {
+      icon: Github,
+      label: "GitHub",
+      href: "https://github.com/Antonio-pf",
+    },
+  ]
+
   return (
     <section className="min-h-screen flex items-center justify-center relative pt-16 px-4 font-sans">
       <div className="container mx-auto px-4 lg:px-8">
@@ -35,6 +54,21 @@ export function Hero() {
             Construindo experiências web robustas e escaláveis com foco em qualidade, confiabilidade e boas práticas de
             desenvolvimento.
           </p>
+
+          <div className="flex justify-center gap-4 mt-8">
+            {socialLinks.map((link) => (
+              <Button
+                key={link.label}
+                variant="ghost"
+                size="icon"
+                className="h-12 w-12 rounded-full border border-border hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer"
+                onClick={() => window.open(link.href, "_blank")}
+                aria-label={link.label}
+              >
+                <link.icon className="h-5 w-5" />
+              </Button>
+            ))}
+          </div>
 
           <button
             onClick={scrollToAbout}
