@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowDown, Linkedin, Github, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Inter, Newsreader } from 'next/font/google'
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
 
 const inter = Inter({
   subsets: ['latin'],
@@ -27,18 +28,26 @@ export function Hero() {
       icon: Download,
       label: "Baixar Currículo",
       href: "/curriculo.pdf",
+      event: ANALYTICS_EVENTS.CLICKED_DOWNLOAD_CV,
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
       href: "https://linkedin.com/in/antônio-pires-felipe-9844ab160",
+      event: ANALYTICS_EVENTS.CLICKED_LINKEDIN,
     },
     {
       icon: Github,
       label: "GitHub",
       href: "https://github.com/Antonio-pf",
+      event: ANALYTICS_EVENTS.CLICKED_GITHUB,
     },
   ]
+
+  const handleSocialClick = (href: string, event: string, label: string) => {
+    trackEvent(event, { label, href })
+    window.open(href, "_blank")
+  }
 
   return (
     <section className="min-h-screen flex items-center justify-center relative pt-16 px-4 font-sans">
@@ -83,7 +92,7 @@ export function Hero() {
                 variant="ghost"
                 size="icon"
                 className="h-12 w-12 rounded-full border border-border hover:border-primary hover:bg-primary/10 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer"
-                onClick={() => window.open(link.href, "_blank")}
+                onClick={() => handleSocialClick(link.href, link.event, link.label)}
                 aria-label={link.label}
               >
                 <link.icon className="h-5 w-5" />
