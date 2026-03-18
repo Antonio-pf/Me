@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { Mail, Phone, MapPin, Linkedin, Github, Download } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
 
 export function Contact() {
   const contactInfo = [
@@ -12,12 +13,14 @@ export function Contact() {
       label: "Email",
       value: "antoniopf.contact@gmail.com",
       href: "https://mail.google.com/mail/?view=cm&fs=1&to=antoniopf.contact@gmail.com",
+      event: ANALYTICS_EVENTS.CLICKED_EMAIL,
     },
     // {
     //   icon: Phone,
     //   label: "Telefone",
     //   value: "(16) 99196-7415",
     //   href: "tel:+5516991967415",
+    //   event: ANALYTICS_EVENTS.CLICKED_PHONE,
     // },
     {
       icon: MapPin,
@@ -26,21 +29,29 @@ export function Contact() {
     },
   ]
 
+  const handleContactClick = (href: string, event: string, label: string) => {
+    trackEvent(event, { label, href })
+    window.open(href, "_blank")
+  }
+
   const socialLinks = [
     {
       icon: Download,
       label: "Baixar Currículo",
       href: "/curriculo.pdf",
+      event: ANALYTICS_EVENTS.CLICKED_DOWNLOAD_CV,
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
       href: "https://linkedin.com/in/antônio-pires-felipe-9844ab160",
+      event: ANALYTICS_EVENTS.CLICKED_LINKEDIN,
     },
     {
       icon: Github,
       label: "GitHub",
       href: "https://github.com/Antonio-pf",
+      event: ANALYTICS_EVENTS.CLICKED_GITHUB,
     },
   ]
 
@@ -90,7 +101,13 @@ export function Contact() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm md:text-base font-medium hover:text-primary transition-colors break-words"
+                        className="text-sm md:text-base font-medium hover:text-primary transition-colors break-words cursor-pointer"
+                        onClick={(e) => {
+                          if (item.event) {
+                            e.preventDefault()
+                            handleContactClick(item.href!, item.event, item.label)
+                          }
+                        }}
                       >
                         {item.value}
                       </a>

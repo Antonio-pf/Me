@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 import "@/app/globals.css"
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
 
 export function Header() {
   const [isDark, setIsDark] = useState(false)
@@ -40,14 +41,15 @@ export function Header() {
   }
 
   const navItems = [
-    { label: "Sobre", href: "#about", icon: User },
-    { label: "Experiência", href: "#experience", icon: Briefcase },
-    { label: "Habilidades", href: "#skills", icon: Wrench },
-    { label: "Projetos", href: "#projects", icon: Code },
-    { label: "Contato", href: "#contact", icon: Mail, highlight: true },
+    { label: "Sobre", href: "#about", icon: User, event: ANALYTICS_EVENTS.CLICKED_NAV_ABOUT },
+    { label: "Experiência", href: "#experience", icon: Briefcase, event: ANALYTICS_EVENTS.CLICKED_NAV_EXPERIENCE },
+    { label: "Habilidades", href: "#skills", icon: Wrench, event: ANALYTICS_EVENTS.CLICKED_NAV_SKILLS },
+    { label: "Projetos", href: "#projects", icon: Code, event: ANALYTICS_EVENTS.CLICKED_NAV_PROJECTS },
+    { label: "Contato", href: "#contact", icon: Mail, highlight: true, event: ANALYTICS_EVENTS.CLICKED_NAV_CONTACT },
   ]
 
-  const scrollToSection = (href: string) => {
+  const scrollToSection = (href: string, event: string, label: string) => {
+    trackEvent(event, { section: href, label })
     const element = document.querySelector(href)
     element?.scrollIntoView({ behavior: "smooth" })
     setIsMenuOpen(false)
@@ -90,7 +92,7 @@ export function Header() {
               return item.highlight ? (
                 <Button
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => scrollToSection(item.href, item.event, item.label)}
                   variant="outline"
                   className="text-sm lg:text-base font-medium border-primary text-primary hover:bg-primary/20 hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer whitespace-nowrap"
                 >
@@ -100,7 +102,7 @@ export function Header() {
               ) : (
                 <button
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => scrollToSection(item.href, item.event, item.label)}
                   className="flex items-center gap-2 text-sm lg:text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-all duration-300 cursor-pointer whitespace-nowrap px-3 py-2 rounded-md"
                 >
                   <Icon className="h-4 w-4" />
@@ -135,7 +137,7 @@ export function Header() {
               return item.highlight ? (
                 <Button
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => scrollToSection(item.href, item.event, item.label)}
                   variant="outline"
                   className="justify-start text-base font-medium border-primary text-primary hover:bg-primary/20 hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer py-3"
                 >
@@ -145,7 +147,7 @@ export function Header() {
               ) : (
                 <button
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => scrollToSection(item.href, item.event, item.label)}
                   className="flex items-center gap-2 text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-all duration-300 py-3 px-3 rounded-md cursor-pointer"
                 >
                   <Icon className="h-4 w-4" />
