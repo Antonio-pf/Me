@@ -13,12 +13,12 @@ export function Contact() {
       value: "antoniopf.contact@gmail.com",
       href: "https://mail.google.com/mail/?view=cm&fs=1&to=antoniopf.contact@gmail.com",
     },
-    {
-      icon: Phone,
-      label: "Telefone",
-      value: "(16) 99196-7415",
-      href: "tel:+5516991967415",
-    },
+    // {
+    //   icon: Phone,
+    //   label: "Telefone",
+    //   value: "(16) 99196-7415",
+    //   href: "tel:+5516991967415",
+    // },
     {
       icon: MapPin,
       label: "Localização",
@@ -69,7 +69,7 @@ export function Contact() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 md:gap-6">
             {contactInfo.map((item, index) => (
               <motion.div
                 key={item.label}
