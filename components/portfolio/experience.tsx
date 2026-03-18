@@ -14,7 +14,7 @@ import {
   SiPostgresql, 
   SiBootstrap 
 } from "react-icons/si"
-import { TbTestPipe, TbBrandCSharp } from "react-icons/tb"
+import { TbTestPipe, TbBrandCSharp, TbBrandPython} from "react-icons/tb"
 import { FaLeaf } from "react-icons/fa"
 
 interface Experience {
@@ -34,14 +34,36 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    id: "cit",
-    title: "Desenvolvedor",
+    id: "cit-analyst",
+    title: "Analista de Sistemas Jr.",
     company: "CI&T",
-    location: "Remote",
-    period: "Mar 2025 - Presente",
+    location: "Campinas, SP (Remoto)",
+    period: "Mar 2026 - Presente",
     current: true,
     description: [
-      "Desenvolvimento com foco em qualidade e confiabilidade do produto",
+      "Desenvolvimento de soluções de IA Generativa de alta complexidade",
+      "Criação de agentes inteligentes e fluxos de orquestração com LangGraph e LangChain",
+      "Implementação de sistemas usando Python (FastAPI) e frameworks de ponta",
+      "Desenvolvimento de interfaces modernas em Angular",
+      "Criação de fluxos complexos de RAG com Langflow e MongoDB",
+    ],
+    technologies: [
+      { name: "Python", icon: TbBrandPython, color: "bg-blue-500/20 text-blue-400 dark:bg-blue-500/30 dark:text-blue-300" },
+      { name: "FastAPI", icon: TbBrandPython , color: "bg-teal-600/20 text-teal-500 dark:bg-teal-600/30 dark:text-teal-400" },
+      { name: "LangChain", icon: FaLeaf, color: "bg-green-500/20 text-green-600 dark:bg-green-500/30 dark:text-green-400" },
+      { name: "LangGraph", icon: FaLeaf, color: "bg-emerald-500/20 text-emerald-600 dark:bg-emerald-500/30 dark:text-emerald-400" },
+      { name: "Angular", icon: SiGithubactions, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },
+      { name: "MongoDB", icon: FaLeaf, color: "bg-green-600/20 text-green-700 dark:bg-green-600/30 dark:text-green-500" },
+    ],
+  },
+  {
+    id: "cit-intern",
+    title: "Estagiário",
+    company: "CI&T",
+    location: "Campinas, SP (Remoto)",
+    period: "Mar 2025 - Mar 2026",
+    description: [
+      "Desenvolvimento e sustentação de soluções de software com foco em qualidade",
       "Implementação de testes automatizados em .NET utilizando BDD (Reqnroll)",
       "Garantia de que mudanças no código não impactem funcionalidades existentes",
       "Integração dos testes em pipelines de CI no GitHub Actions para validação contínua",
@@ -55,17 +77,36 @@ const experiences: Experience[] = [
     ],
   },
   {
-    id: "nicnet",
-    title: "Desenvolvedor Júnior",
-    company: "NicNet",
+    id: "nicnet-jr",
+    title: "Desenvolvedor Júnior Full Stack Web",
+    company: "Nicnet",
     location: "Cravinhos, SP",
-    period: "Mai 2023 - Mar 2025",
+    period: "Abr 2024 - Mar 2025",
     description: [
       "Implementação de módulos no sistema ERP utilizando Laravel",
       "Desenvolvimento de controle de estacionamento e lançamentos contábeis",
       "Geração de relatórios dinâmicos com gráficos",
       "Correção de bugs com foco em práticas de Clean Code",
       "Ajustes no front-end para melhor experiência do usuário",
+    ],
+    technologies: [
+      { name: "Laravel", icon: SiLaravel, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },
+      { name: "PHP", icon: SiPhp, color: "bg-indigo-500/20 text-indigo-600 dark:bg-indigo-500/30 dark:text-indigo-400" },
+      { name: "jQuery", icon: SiJquery, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+      { name: "PostgreSQL", icon: SiPostgresql, color: "bg-blue-600/20 text-blue-700 dark:bg-blue-600/30 dark:text-blue-400" },
+      { name: "Bootstrap", icon: SiBootstrap, color: "bg-purple-500/20 text-purple-600 dark:bg-purple-500/30 dark:text-purple-400" },
+    ],
+  },
+  {
+    id: "nicnet-trainee",
+    title: "Desenvolvedor Trainee Full Stack Web",
+    company: "Nicnet",
+    location: "Cravinhos, SP",
+    period: "Mai 2023 - Abr 2024",
+    description: [
+      "Desenvolvimento de sistemas web",
+      "Aprendizado e aplicação de tecnologias web (PHP, Laravel, jQuery)",
+      "Colaboração com equipe no desenvolvimento de funcionalidades",
     ],
     technologies: [
       { name: "Laravel", icon: SiLaravel, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },

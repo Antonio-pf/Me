@@ -35,20 +35,28 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <p>
-              Sou <strong className="text-foreground">Desenvolvedor Full Stack</strong>, com foco atual em{" "}
-              <strong className="text-foreground">.NET</strong> e experiência com{" "}
-              <strong className="text-foreground">PHP (Laravel)</strong>,{" "}
-              <strong className="text-foreground">jQuery</strong> e{" "}
-              <strong className="text-foreground">PostgreSQL</strong>.
+              Sou <strong className="text-foreground">Analista de Sistemas Jr.</strong> na{" "}
+              <strong className="text-foreground">CI&T</strong>, focado na intersecção entre{" "}
+              <strong className="text-foreground">Inteligência Artificial Generativa</strong> e desenvolvimento de 
+              software escalável.
             </p>
             <p>
-              Estou cursando <strong className="text-foreground">Análise e Desenvolvimento de Sistemas</strong> na FATEC
-              (5º semestre). Atuei no desenvolvimento de sistemas ERP, aplicando boas práticas como Clean Code.
+              Atualmente, estou focado na construção de <strong className="text-foreground">sistemas inteligentes e agentes 
+              autônomos</strong>, utilizando <strong className="text-foreground">Python (FastAPI)</strong> e frameworks de 
+              orquestração como <strong className="text-foreground">LangChain</strong> e{" "}
+              <strong className="text-foreground">LangGraph</strong>. Minha atuação envolve desde a criação de fluxos 
+              complexos de RAG (com Langflow e MongoDB) até o desenvolvimento de interfaces modernas em Angular.
             </p>
             <p>
-              Gosto de aprender, resolver problemas com tecnologia e contribuir com soluções que gerem valor real para o
-              usuário. Estou sempre aberto a novos desafios e valorizo a oportunidade de impulsionar o sucesso da
-              equipe.
+              Possuo uma base sólida vinda do ecossistema <strong className="text-foreground">.NET</strong> e{" "}
+              <strong className="text-foreground">PHP (Laravel)</strong>, onde apliquei boas práticas de Clean Code e 
+              arquitetura em sistemas ERP. Essa bagagem de engenharia me permite hoje construir soluções de IA que não 
+              são apenas "inteligentes", mas também robustas.
+            </p>
+            <p>
+              Cursando <strong className="text-foreground">Análise e Desenvolvimento de Sistemas</strong> na FATEC 
+              (5º semestre). Acredito que a tecnologia deve facilitar a vida do usuário final, e hoje encontro esse 
+              propósito criando assistentes e automações que transformam dados em valor real.
             </p>
           </motion.div>
 

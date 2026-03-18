@@ -17,10 +17,13 @@ import {
   SiGit, 
   SiDocker, 
   SiGithubactions, 
-  SiAmazon
+  SiAmazon,
+  SiAngular,
+  SiMongodb,
+  SiPostgresql
 } from "react-icons/si"
-import { TbBrandCSharp, TbTestPipe } from "react-icons/tb"
-import { FaCode } from "react-icons/fa"
+import { TbBrandCSharp, TbTestPipe, TbBrandPython } from "react-icons/tb"
+import { FaCode, FaLeaf } from "react-icons/fa"
 import { MdCleaningServices } from "react-icons/md"
 
 interface Skill {
@@ -32,24 +35,35 @@ interface Skill {
 export function Skills() {
   const skillCategories: { title: string; skills: Skill[] }[] = [
     {
-      title: "Backend",
+      title: "AI & Backend",
       skills: [
-        { name: "PHP", icon: SiPhp, color: "bg-indigo-500/20 text-indigo-600 dark:bg-indigo-500/30 dark:text-indigo-400" },
-        { name: "Laravel", icon: SiLaravel, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },
+        { name: "Python", icon: TbBrandPython, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+        { name: "FastAPI", icon: TbBrandPython, color: "bg-teal-500/20 text-teal-600 dark:bg-teal-500/30 dark:text-teal-400" },
+        { name: "LangChain", icon: FaLeaf, color: "bg-green-500/20 text-green-600 dark:bg-green-500/30 dark:text-green-400" },
+        { name: "LangGraph", icon: FaLeaf, color: "bg-emerald-500/20 text-emerald-600 dark:bg-emerald-500/30 dark:text-emerald-400" },
         { name: "C#", icon: TbBrandCSharp, color: "bg-purple-600/20 text-purple-500 dark:bg-purple-600/30 dark:text-purple-400" },
         { name: ".NET", icon: SiDotnet, color: "bg-purple-500/20 text-purple-400 dark:bg-purple-500/30 dark:text-purple-300" },
-        { name: "Spring Boot", icon: SiSpring, color: "bg-green-600/20 text-green-700 dark:bg-green-600/30 dark:text-green-400" },
-        { name: "SQL", icon: SiMysql, color: "bg-blue-600/20 text-blue-700 dark:bg-blue-600/30 dark:text-blue-400" },
+        { name: "PHP", icon: SiPhp, color: "bg-indigo-500/20 text-indigo-600 dark:bg-indigo-500/30 dark:text-indigo-400" },
+        { name: "Laravel", icon: SiLaravel, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },
       ],
     },
     {
       title: "Frontend",
       skills: [
+        { name: "Angular", icon: SiAngular, color: "bg-red-600/20 text-red-700 dark:bg-red-600/30 dark:text-red-400" },
         { name: "JavaScript", icon: SiJavascript, color: "bg-yellow-500/20 text-yellow-600 dark:bg-yellow-500/30 dark:text-yellow-400" },
         { name: "jQuery", icon: SiJquery, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
         { name: "Bootstrap", icon: SiBootstrap, color: "bg-purple-500/20 text-purple-600 dark:bg-purple-500/30 dark:text-purple-400" },
         { name: "HTML", icon: SiHtml5, color: "bg-orange-500/20 text-orange-600 dark:bg-orange-500/30 dark:text-orange-400" },
         { name: "CSS", icon: SiCss3, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
+      ],
+    },
+    {
+      title: "Databases",
+      skills: [
+        { name: "MongoDB", icon: SiMongodb, color: "bg-green-600/20 text-green-700 dark:bg-green-600/30 dark:text-green-500" },
+        { name: "PostgreSQL", icon: SiPostgresql, color: "bg-blue-600/20 text-blue-700 dark:bg-blue-600/30 dark:text-blue-400" },
+        { name: "SQL", icon: SiMysql, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
       ],
     },
     {
