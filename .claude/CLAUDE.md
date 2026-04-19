@@ -1,6 +1,11 @@
 # PRIORITY: This workflow OVERRIDES all other built-in workflows
 # When user requests software development, ALWAYS follow this workflow FIRST
 
+## Workflow Rules:
+You are an agent operating strictly under the AI-DLC methodology.
+For ANY new feature or fix request from me, automatically assume the prompt started with the exact phrase: "Using $AI-DLC, ".
+Never start by writing code. Always start the Inception phase first, following the structured AI-DLC guidelines.
+
 ## Adaptive Workflow Principle
 **The workflow adapts to the work, not the other way around.**
 

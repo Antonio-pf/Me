@@ -5,6 +5,7 @@ import { ArrowDown, Linkedin, Github, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Inter, Newsreader } from 'next/font/google'
 import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
+import { TypedText } from "@/components/portfolio/typed-text"
 
 const inter = Inter({
   subsets: ['latin'],
@@ -62,7 +63,19 @@ export function Hero() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance px-2">
               Antônio Pires Felipe
             </h1>
-            <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium">Desenvolvedor Full Stack</p>
+            <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium min-h-[1.5em]">
+              <TypedText
+                texts={[
+                  "Desenvolvedor Full Stack",
+                  "Engenheiro de Software",
+                  "Entusiasta de Tecnologia",
+                  "Criando Soluções Inovadoras",
+                ]}
+                typingSpeed={70}
+                deletingSpeed={35}
+                pauseAfterType={2200}
+              />
+            </p>
           </motion.div>
 
           <motion.p 

@@ -1,51 +1,67 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
 
 interface TypedTextProps {
-  text: string
-  speed?: number
+  texts: string[]
+  typingSpeed?: number
+  deletingSpeed?: number
+  pauseAfterType?: number
+  pauseAfterDelete?: number
   className?: string
-  showCursor?: boolean
-  cursorClassName?: string
 }
 
 export function TypedText({
-  text,
-  speed = 100,
-  className = '',
-  showCursor = true,
-  cursorClassName = 'animate-pulse'
+  texts,
+  typingSpeed = 80,
+  deletingSpeed = 40,
+  pauseAfterType = 2000,
+  pauseAfterDelete = 400,
+  className = "",
 }: TypedTextProps) {
-  const [displayText, setDisplayText] = useState('')
-  const [isComplete, setIsComplete] = useState(false)
+  const [displayed, setDisplayed] = useState("")
+  const [textIndex, setTextIndex] = useState(0)
+  const [phase, setPhase] = useState<"typing" | "pausing" | "deleting" | "waiting">("typing")
 
   useEffect(() => {
-    let i = 0
-    setDisplayText('')
-    setIsComplete(false)
+    const current = texts[textIndex]
 
-    const timer = setInterval(() => {
-      if (i < text.length) {
-        setDisplayText((prev) => prev + text[i])
-        i++
+    if (phase === "typing") {
+      if (displayed.length < current.length) {
+        const t = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), typingSpeed)
+        return () => clearTimeout(t)
       } else {
-        setIsComplete(true)
-        clearInterval(timer)
+        setPhase("pausing")
       }
-    }, speed)
+    }
 
-    return () => clearInterval(timer)
-  }, [text, speed])
+    if (phase === "pausing") {
+      const t = setTimeout(() => setPhase(texts.length > 1 ? "deleting" : "pausing"), pauseAfterType)
+      return () => clearTimeout(t)
+    }
+
+    if (phase === "deleting") {
+      if (displayed.length > 0) {
+        const t = setTimeout(() => setDisplayed((d) => d.slice(0, -1)), deletingSpeed)
+        return () => clearTimeout(t)
+      } else {
+        setPhase("waiting")
+      }
+    }
+
+    if (phase === "waiting") {
+      const t = setTimeout(() => {
+        setTextIndex((i) => (i + 1) % texts.length)
+        setPhase("typing")
+      }, pauseAfterDelete)
+      return () => clearTimeout(t)
+    }
+  }, [displayed, phase, textIndex, texts, typingSpeed, deletingSpeed, pauseAfterType, pauseAfterDelete])
 
   return (
     <span className={className}>
-      {displayText}
-      {showCursor && (
-        <span className={`${cursorClassName} ${isComplete ? 'opacity-0' : ''}`}>
-          |
-        </span>
-      )}
+      {displayed}
+      <span className="animate-pulse ml-0.5 text-primary">|</span>
     </span>
   )
 }
