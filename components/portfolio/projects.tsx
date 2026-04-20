@@ -2,21 +2,20 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { ExternalLink, Github, Code2, BarChart2, Sword, HelpCircle, ZoomIn, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+import { PROJECTS, type ProjectData } from "@/lib/my-data"
+import { trackEvent, ANALYTICS_EVENTS } from "@/lib/analytics"
 
-interface Project {
-  id: number
-  title: string
-  description: string
-  technologies: string[]
-  githubUrl: string
-  demoUrl?: string
-  images: string[]
-  fallbackIcon: React.ReactNode
+const FALLBACK_ICONS: Record<number, React.ReactNode> = {
+  1: <HelpCircle className="w-12 h-12" />,
+  2: <BarChart2 className="w-12 h-12" />,
+  3: <Code2 className="w-12 h-12" />,
+  4: <Sword className="w-12 h-12" />,
 }
 
 function ProjectLightbox({
@@ -34,8 +33,14 @@ function ProjectLightbox({
 }) {
   const [current, setCurrent] = useState(initialIndex)
 
-  const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length)
-  const next = () => setCurrent((c) => (c + 1) % images.length)
+  const prev = () => {
+    setCurrent((c) => (c - 1 + images.length) % images.length)
+    trackEvent(ANALYTICS_EVENTS.PROJECT_LIGHTBOX_NAVIGATED, { direction: 'prev', project: title })
+  }
+  const next = () => {
+    setCurrent((c) => (c + 1) % images.length)
+    trackEvent(ANALYTICS_EVENTS.PROJECT_LIGHTBOX_NAVIGATED, { direction: 'next', project: title })
+  }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") prev()
@@ -68,11 +73,15 @@ function ProjectLightbox({
 
           {/* Image */}
           <div className="relative flex items-center justify-center bg-muted/30 min-h-[60vh]">
-            <img
-              src={images[current]}
-              alt={`${title} - screenshot ${current + 1}`}
-              className="max-h-[70vh] max-w-full object-contain"
-            />
+            <div className="relative w-full min-h-[60vh]">
+              <Image
+                src={images[current]}
+                alt={`${title} - screenshot ${current + 1}`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 896px"
+              />
+            </div>
 
             {images.length > 1 && (
               <>
@@ -101,11 +110,11 @@ function ProjectLightbox({
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`shrink-0 h-14 w-20 rounded overflow-hidden border-2 transition-all ${
+                  className={`relative shrink-0 h-14 w-20 rounded overflow-hidden border-2 transition-all ${
                     i === current ? "border-primary opacity-100" : "border-transparent opacity-50 hover:opacity-80"
                   }`}
                 >
-                  <img src={src} alt="" className="h-full w-full object-cover" />
+                  <Image src={src} alt="" fill className="object-cover" sizes="80px" />
                 </button>
               ))}
             </div>
@@ -140,13 +149,18 @@ function ProjectThumbnail({
     <>
       <button
         className="relative group/thumb w-full aspect-video overflow-hidden bg-muted block text-left"
-        onClick={() => setLightboxOpen(true)}
+        onClick={() => {
+          setLightboxOpen(true)
+          trackEvent(ANALYTICS_EVENTS.PROJECT_LIGHTBOX_OPENED, { project: title })
+        }}
         aria-label={`Ver screenshots de ${title}`}
       >
-        <img
+        <Image
           src={images[0]}
           alt={`${title} - screenshot`}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105"
+          fill
+          className="object-cover transition-transform duration-500 group-hover/thumb:scale-105"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
         <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/40 transition-all duration-300 flex items-center justify-center">
           <div className="opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-300 flex flex-col items-center gap-2 text-white">
@@ -172,62 +186,6 @@ function ProjectThumbnail({
 }
 
 export function Projects() {
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "HEY - Sistema de Votação de Perguntas",
-      description:
-        "Sistema de votação e enquetes onde usuários podem criar perguntas, salvar como rascunho, publicar e receber likes/dislikes. Inclui login via GitHub e modo dark.",
-      technologies: ["Laravel", "PHP", "Blade", "Tailwind CSS", "SQLite"],
-      githubUrl: "https://github.com/Antonio-pf/hey",
-      images: [],
-      fallbackIcon: <HelpCircle className="w-12 h-12" />,
-    },
-    {
-      id: 2,
-      title: "OrçaMente - App de Educação Financeira",
-      description:
-        "Aplicativo mobile para controle de gastos com cofrinho virtual, definição de metas, quiz de perfil financeiro e cursos. Integrado com Firebase para autenticação e armazenamento.",
-      technologies: ["Flutter", "Dart", "Firebase", "Firestore"],
-      githubUrl: "https://github.com/Antonio-pf/OrcaMente",
-      demoUrl: "https://app-orcamente.web.app/",
-      images: [
-        "/exemples-projects/orcamente/login.png",
-        "/exemples-projects/orcamente/controle.png",
-        "/exemples-projects/orcamente/extrato.png",
-        "/exemples-projects/orcamente/config.png",
-        "/exemples-projects/orcamente/dados_user.png",
-        "/exemples-projects/orcamente/educacao.png",
-      ],
-      fallbackIcon: <BarChart2 className="w-12 h-12" />,
-    },
-    {
-      id: 3,
-      title: "SaldoZen - Gerenciador de Despesas",
-      description:
-        "Plataforma web para gerenciamento financeiro pessoal com cadastro de despesas, dashboard intuitivo e visualização clara da situação financeira.",
-      technologies: ["Python", "Flask", "SQLAlchemy", "Bootstrap", "Jinja2"],
-      githubUrl: "https://github.com/Antonio-pf/crud-ihc",
-      demoUrl: "https://antoniopf.pythonanywhere.com/sobre",
-      images: [],
-      fallbackIcon: <Code2 className="w-12 h-12" />,
-    },
-    {
-      id: 4,
-      title: "Bloco de Detetive - Clue Helper",
-      description:
-        "Aplicativo web para jogadores do jogo Detetive (Clue) registrarem suas deduções. Inclui modo 'No Cheating', temas personalizados e armazenamento local.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "LocalStorage"],
-      githubUrl: "https://github.com/Antonio-pf/bloco-anotacao-clue",
-      demoUrl: "https://antonio-pf.github.io/bloco-anotacao-clue/",
-      images: [
-        "/exemples-projects/bloco-detetive-clue/tela-inicial.png",
-        "/exemples-projects/bloco-detetive-clue/modo-privado.png",
-      ],
-      fallbackIcon: <Sword className="w-12 h-12" />,
-    },
-  ]
-
   return (
     <motion.section
       id="projects"
@@ -254,7 +212,7 @@ export function Projects() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            {projects.map((project, index) => (
+            {PROJECTS.map((project: ProjectData, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -266,7 +224,7 @@ export function Projects() {
                   <ProjectThumbnail
                     images={project.images}
                     title={project.title}
-                    fallbackIcon={project.fallbackIcon}
+                    fallbackIcon={FALLBACK_ICONS[project.id]}
                   />
 
                   <CardContent className="p-4 sm:p-6 space-y-4 flex flex-col flex-1">
@@ -293,7 +251,10 @@ export function Projects() {
                         variant="outline"
                         size="sm"
                         className="gap-2 bg-transparent cursor-pointer text-sm sm:text-base w-full sm:w-auto"
-                        onClick={() => window.open(project.githubUrl, "_blank")}
+                        onClick={() => {
+                          trackEvent(ANALYTICS_EVENTS.PROJECT_GITHUB_CLICKED, { project: project.title })
+                          window.open(project.githubUrl, "_blank")
+                        }}
                       >
                         <Github className="h-4 w-4" />
                         <span>Código</span>
@@ -303,7 +264,10 @@ export function Projects() {
                           variant="outline"
                           size="sm"
                           className="gap-2 bg-transparent cursor-pointer text-sm sm:text-base w-full sm:w-auto"
-                          onClick={() => window.open(project.demoUrl, "_blank")}
+                          onClick={() => {
+                            trackEvent(ANALYTICS_EVENTS.PROJECT_DEMO_CLICKED, { project: project.title })
+                            window.open(project.demoUrl, "_blank")
+                          }}
                         >
                           <ExternalLink className="h-4 w-4" />
                           <span>Demo</span>

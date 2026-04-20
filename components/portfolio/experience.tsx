@@ -5,122 +5,41 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, MapPin } from "lucide-react"
-import { 
-  SiDotnet, 
-  SiGithubactions, 
-  SiLaravel, 
-  SiPhp, 
-  SiJquery, 
-  SiPostgresql, 
-  SiBootstrap 
+import {
+  SiDotnet,
+  SiGithubactions,
+  SiLaravel,
+  SiPhp,
+  SiJquery,
+  SiPostgresql,
+  SiBootstrap,
 } from "react-icons/si"
-import { TbTestPipe, TbBrandCSharp, TbBrandPython} from "react-icons/tb"
+import { TbTestPipe, TbBrandCSharp, TbBrandPython } from "react-icons/tb"
 import { FaLeaf } from "react-icons/fa"
+import { EXPERIENCES } from "@/lib/my-data"
 
-interface Experience {
-  id: string
-  title: string
-  company: string
-  location: string
-  period: string
-  current?: boolean
-  description: string[]
-  technologies: {
-    name: string
-    icon: React.ComponentType<{ className?: string }>
-    color: string
-  }[]
+const TECH_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  Python: TbBrandPython,
+  FastAPI: TbBrandPython,
+  LangChain: FaLeaf,
+  LangGraph: FaLeaf,
+  Angular: SiGithubactions,
+  MongoDB: FaLeaf,
+  ".NET": SiDotnet,
+  "C#": TbBrandCSharp,
+  BDD: TbTestPipe,
+  "GitHub Actions": SiGithubactions,
+  Reqnroll: FaLeaf,
+  Laravel: SiLaravel,
+  PHP: SiPhp,
+  jQuery: SiJquery,
+  PostgreSQL: SiPostgresql,
+  Bootstrap: SiBootstrap,
 }
 
-const experiences: Experience[] = [
-  {
-    id: "cit-analyst",
-    title: "Analista de Sistemas Jr.",
-    company: "CI&T",
-    location: "Campinas, SP (Remoto)",
-    period: "Mar 2026 - Presente",
-    current: true,
-    description: [
-      "Desenvolvimento de soluções de IA Generativa de alta complexidade",
-      "Criação de agentes inteligentes e fluxos de orquestração com LangGraph e LangChain",
-      "Implementação de sistemas usando Python (FastAPI) e frameworks de ponta",
-      "Desenvolvimento de interfaces modernas em Angular",
-      "Criação de fluxos complexos de RAG com Langflow e MongoDB",
-    ],
-    technologies: [
-      { name: "Python", icon: TbBrandPython, color: "bg-blue-500/20 text-blue-400 dark:bg-blue-500/30 dark:text-blue-300" },
-      { name: "FastAPI", icon: TbBrandPython , color: "bg-teal-600/20 text-teal-500 dark:bg-teal-600/30 dark:text-teal-400" },
-      { name: "LangChain", icon: FaLeaf, color: "bg-green-500/20 text-green-600 dark:bg-green-500/30 dark:text-green-400" },
-      { name: "LangGraph", icon: FaLeaf, color: "bg-emerald-500/20 text-emerald-600 dark:bg-emerald-500/30 dark:text-emerald-400" },
-      { name: "Angular", icon: SiGithubactions, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },
-      { name: "MongoDB", icon: FaLeaf, color: "bg-green-600/20 text-green-700 dark:bg-green-600/30 dark:text-green-500" },
-    ],
-  },
-  {
-    id: "cit-intern",
-    title: "Estagiário",
-    company: "CI&T",
-    location: "Campinas, SP (Remoto)",
-    period: "Mar 2025 - Mar 2026",
-    description: [
-      "Desenvolvimento e sustentação de soluções de software com foco em qualidade",
-      "Implementação de testes automatizados em .NET utilizando BDD (Reqnroll)",
-      "Garantia de que mudanças no código não impactem funcionalidades existentes",
-      "Integração dos testes em pipelines de CI no GitHub Actions para validação contínua",
-    ],
-    technologies: [
-      { name: ".NET", icon: SiDotnet, color: "bg-purple-500/20 text-purple-400 dark:bg-purple-500/30 dark:text-purple-300" },
-      { name: "C#", icon: TbBrandCSharp, color: "bg-purple-600/20 text-purple-500 dark:bg-purple-600/30 dark:text-purple-400" },
-      { name: "BDD", icon: TbTestPipe, color: "bg-green-500/20 text-green-600 dark:bg-green-500/30 dark:text-green-400" },
-      { name: "GitHub Actions", icon: SiGithubactions, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
-      { name: "Reqnroll", icon: FaLeaf, color: "bg-emerald-500/20 text-emerald-600 dark:bg-emerald-500/30 dark:text-emerald-400" },
-    ],
-  },
-  {
-    id: "nicnet-jr",
-    title: "Desenvolvedor Júnior Full Stack Web",
-    company: "Nicnet",
-    location: "Cravinhos, SP",
-    period: "Abr 2024 - Mar 2025",
-    description: [
-      "Implementação de módulos no sistema ERP utilizando Laravel",
-      "Desenvolvimento de controle de estacionamento e lançamentos contábeis",
-      "Geração de relatórios dinâmicos com gráficos",
-      "Correção de bugs com foco em práticas de Clean Code",
-      "Ajustes no front-end para melhor experiência do usuário",
-    ],
-    technologies: [
-      { name: "Laravel", icon: SiLaravel, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },
-      { name: "PHP", icon: SiPhp, color: "bg-indigo-500/20 text-indigo-600 dark:bg-indigo-500/30 dark:text-indigo-400" },
-      { name: "jQuery", icon: SiJquery, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
-      { name: "PostgreSQL", icon: SiPostgresql, color: "bg-blue-600/20 text-blue-700 dark:bg-blue-600/30 dark:text-blue-400" },
-      { name: "Bootstrap", icon: SiBootstrap, color: "bg-purple-500/20 text-purple-600 dark:bg-purple-500/30 dark:text-purple-400" },
-    ],
-  },
-  {
-    id: "nicnet-trainee",
-    title: "Desenvolvedor Trainee Full Stack Web",
-    company: "Nicnet",
-    location: "Cravinhos, SP",
-    period: "Mai 2023 - Abr 2024",
-    description: [
-      "Desenvolvimento de sistemas web",
-      "Aprendizado e aplicação de tecnologias web (PHP, Laravel, jQuery)",
-      "Colaboração com equipe no desenvolvimento de funcionalidades",
-    ],
-    technologies: [
-      { name: "Laravel", icon: SiLaravel, color: "bg-red-500/20 text-red-600 dark:bg-red-500/30 dark:text-red-400" },
-      { name: "PHP", icon: SiPhp, color: "bg-indigo-500/20 text-indigo-600 dark:bg-indigo-500/30 dark:text-indigo-400" },
-      { name: "jQuery", icon: SiJquery, color: "bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400" },
-      { name: "PostgreSQL", icon: SiPostgresql, color: "bg-blue-600/20 text-blue-700 dark:bg-blue-600/30 dark:text-blue-400" },
-      { name: "Bootstrap", icon: SiBootstrap, color: "bg-purple-500/20 text-purple-600 dark:bg-purple-500/30 dark:text-purple-400" },
-    ],
-  },
-]
-
 export function Experience() {
-  const [selectedId, setSelectedId] = useState<string>(experiences[0].id)
-  const selectedExperience = experiences.find((exp) => exp.id === selectedId)!
+  const [selectedId, setSelectedId] = useState<string>(EXPERIENCES[0].id)
+  const selectedExperience = EXPERIENCES.find((exp) => exp.id === selectedId)!
 
   return (
     <section id="experience" className="py-20 lg:py-32 bg-muted/30">
@@ -134,7 +53,7 @@ export function Experience() {
 
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-4 sm:gap-6">
             <div className="space-y-2 px-2">
-              {experiences.map((exp) => (
+              {EXPERIENCES.map((exp) => (
                 <button
                   key={exp.id}
                   onClick={() => setSelectedId(exp.id)}
@@ -202,7 +121,7 @@ export function Experience() {
                     <h4 className="font-semibold text-lg sm:text-xl">Tecnologias:</h4>
                     <div className="flex flex-wrap gap-2">
                       {selectedExperience.technologies.map((tech, index) => {
-                        const Icon = tech.icon
+                        const Icon = TECH_ICONS[tech.name]
                         return (
                           <Badge key={index} variant="secondary" className={`${tech.color} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-1.5 border-current/20`}>
                             <Icon className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
